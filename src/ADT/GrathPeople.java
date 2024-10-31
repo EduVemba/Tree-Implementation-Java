@@ -4,23 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
- class Person{
-    String name;
 
-    Person(String name){
-        this.name = name;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        Person p = (Person)obj;
-        return name.equals(p.name);
-    }
-    @Override
-    public int hashCode(){
-        return name.hashCode();
-    }
-
-}
 
 
 /**
@@ -29,13 +13,17 @@ import java.util.Map;
  */
 
 public class GrathPeople {
-    Map<Person, List<Person>> adjVertices;
+    private Map<Person, List<Person>> adjVertices;
 
-    public GrathPeople() {}
+    public GrathPeople() {
+    }
+
 
     public GrathPeople(Map<Person, List<Person>> adjVertices){
         this.adjVertices = adjVertices;
     }
+
+
 
     public void setAdjVertices(Map<Person, List<Person>> adjVertices){
         this.adjVertices = adjVertices;
