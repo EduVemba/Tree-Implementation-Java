@@ -5,7 +5,7 @@ import java.util.*;
 
 /**
  * @param = Implementação de Um Graph entre pessoas
- * @Return = New Graph
+ * @return
  */
 
 public class GrathPeople {
@@ -56,6 +56,15 @@ public class GrathPeople {
         return adjVertices.get(new Person(name));
     }
 
+
+
+    /**
+     *
+     * @param grath
+     * @param root
+     * @return
+     */
+    // Primeiro os Vertices depois as bordas
     public Set<String> dephFirstTraversal(GrathPeople grath, String root){
         Set<String> visited = new LinkedHashSet<>();
         Stack<String> stack = new Stack<String>();
@@ -70,6 +79,22 @@ public class GrathPeople {
             }
         }
         return  visited;
+    }
+
+    //Primeiro as bordas depois os vertices
+    public Set<String> breadthFirstTraversal(GrathPeople grath, String root){
+        Set<String> visited = new LinkedHashSet<>();
+        Queue<String> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            String people = queue.poll();
+            for (Person p : grath.getAdjVertices(people)){
+                if(!visited.contains(p.name)){
+                    visited.add(p.name);
+                    queue.add(p.name);
+                }
+            }
+        }
     }
 
 }
