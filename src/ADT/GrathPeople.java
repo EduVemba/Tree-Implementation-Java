@@ -1,10 +1,6 @@
 package ADT;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-
+import java.util.*;
 
 
 /**
@@ -14,10 +10,6 @@ import java.util.Map;
 
 public class GrathPeople {
     private Map<Person, List<Person>> adjVertices;
-
-    public GrathPeople() {
-    }
-
 
     public GrathPeople(Map<Person, List<Person>> adjVertices){
         this.adjVertices = adjVertices;
@@ -62,6 +54,22 @@ public class GrathPeople {
     }
     public List<Person> getAdjVertices(String name){
         return adjVertices.get(new Person(name));
+    }
+
+    public Set<String> dephFirstTraversal(GrathPeople grath, String root){
+        Set<String> visited = new LinkedHashSet<>();
+        Stack<String> stack = new Stack<String>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            String person = stack.pop();
+            if (!visited.contains(person)){
+                visited.add(person);
+                for (Person p : grath.getAdjVertices(person)){
+                    stack.push(p.name);
+                }
+            }
+        }
+        return  visited;
     }
 
 }
